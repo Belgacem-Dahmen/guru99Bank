@@ -3,7 +3,7 @@ package guru99Bank;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class BankLogin {
+public class BankLogin2Condition {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -15,7 +15,16 @@ public class BankLogin {
 		driver.findElement(By.name("uid")).sendKeys("mngr438072");
 		driver.findElement(By.name("password")).sendKeys("tUqUgUz");
 		driver.findElement(By.name("btnLogin")).click();
+		String url=driver.getCurrentUrl();
+		String welcomeMsg = driver.findElement(By.tagName("marquee")).getText();
+		if(welcomeMsg.equals("Welcome To Manager's Page of Guru99 Bank")) {
+			System.out.print("Test case is OK, This is the current URL" + " " + url);
+			driver.close();
+		}
+		else {
+		System.out.println("\n Test case is KO , This is the current URL" + " " + url);
 		driver.close();
+		}
 		
 
 }
